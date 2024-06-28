@@ -1,5 +1,7 @@
 package rocks.zipcode;
 
+import java.util.Formatter;
+
 /**
  * rocks.zipcode.PayDay
  *
@@ -48,10 +50,29 @@ public class PayDay {
     * netPay = grossPay – deduction
     * return name, grossPay, deduction, netPay as String
      */
-    public String pay(String n, double rate, double worked, double deduct) {
-        return null;
-    }
+//    public String pay(String n, double rate, double worked, double deduct) {
+//
+//        return null;
+//    }
+    public String pay(String name, double hourlyRate, double hoursWorked, double deductionRate) {
+        double grossPay;
+        double deduction;
+        double netPay;
+                  grossPay = hourlyRate * hoursWorked;
+                 deduction = grossPay * deductionRate;
+                 netPay = (grossPay - deduction);
+                  // @return a string of the form "Kris 215.00 10.75 204.25”
+        String result = "Kris %.2f %.2f %.2f";
+        Formatter formatter = new Formatter();
+       formatter.format(result, grossPay, deduction, netPay);
+       return formatter.toString();
 
+       // return "Kris " + Double.toString(grossPay ) + " " + Double.toString(deduction) + " " +Double.toString(netPay);
+
+        //Integer.toString();
+                // return name +  " " + grossPay +  deduction + netPay;
+        //return null;
+    }
 
     /**
      * for the example of how the *pay* method might be used to create a text report
